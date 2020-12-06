@@ -1,9 +1,7 @@
 import './App.css';
 import React from 'react';
-import Login from './user/Login';
+import UserBar from './user/UserBar';
 
-function App() {
-  return <Login/>
+export default function App() {
+  return <UserBar/>
 }
-
-export default App;
