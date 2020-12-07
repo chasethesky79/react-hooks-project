@@ -36,7 +36,7 @@ export default function Register({setUser}) {
             <label htmlFor="register-repeat-password">Repeat Password:</label>
             <input type="text" name="register-repeat-password" value={repeatPassword} id="register-repeat-password" onChange={handleRepeatPasswordChange}/>
 
-            <input type="submit" value="Register" disabled={!userName}/>
+            <input type="submit" value="Register" disabled={!userName || (password !== repeatPassword)}/>
         </form>
     )
 }
