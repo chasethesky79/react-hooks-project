@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Logout  from './Logout';
 import Login from './Login';
 import Register from './Register';
 
-export default function UserBar() {
-    const [user, setUser] = useState('');
+export default function UserBar({user, setUser}) {
 
     if (user) {
         return <Logout user={user} setUser={setUser}/>
