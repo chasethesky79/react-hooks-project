@@ -1,7 +1,9 @@
-export default function Logout({ user, setUser }){
+import { logoutAction } from "./user-actions";
+
+export default function Logout({ user, dispatch }){
 
   const handleLogout = (evt) => {
-      setUser('')
+      dispatch(logoutAction)
       evt.preventDefault();
   }
   return (

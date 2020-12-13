@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { registerAction } from './user-actions';
 
-export default function Register({setUser}) {
+export default function Register({dispatch}) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -21,8 +22,8 @@ export default function Register({setUser}) {
         if (password !== repeatPassword) {
             return;
         }
-        setUser(userName);
         evt.preventDefault();
+        dispatch(registerAction(userName))
     }
 
     return (

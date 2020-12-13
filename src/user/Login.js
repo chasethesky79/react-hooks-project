@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { loginAction } from './user-actions';
 
-export default function Login({setUser}) {
+export default function Login({dispatch}) {
 
     const [userName, setUserName] = useState('');
     const handleOnChange = ({target: { value }}) => {
@@ -9,7 +10,7 @@ export default function Login({setUser}) {
 
     const handleFormSubmit = (evt) => {
       evt.preventDefault();
-      setUser(userName);
+      dispatch(loginAction(userName))
     }
 
     return (
