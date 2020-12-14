@@ -3,8 +3,9 @@ import PostList from './post/PostList.js';
 import CreatePost from './post/CreatePost';
 import UserBar from './user/UserBar';
 import './post/posts.css';
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 import { userReducer } from './user/user-reducer';
+import { postReducer } from './post/post-reducer';
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
@@ -15,14 +16,14 @@ const defaultPosts = [
 export default function App() {
   
   const [user, dispatchUser] = useReducer(userReducer, '')
-  const [posts, setPosts] = useState(defaultPosts)
+  const [posts, dispatchPost] = useReducer(postReducer, defaultPosts)
 
   return (
     <div className="posts-container">
       User: {user}
     <UserBar user={user} dispatch={dispatchUser}/>
     <br/>
-    { user && <CreatePost user={user} posts={posts} setPosts={setPosts}/>}
+    { user && <CreatePost user={user} posts={posts} dispatch={dispatchPost}/>}
     <br/>
     <hr/>
     <PostList posts={posts}/>

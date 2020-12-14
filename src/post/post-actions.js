@@ -1,0 +1,1 @@
+export const addPostAction = (post) => ({type: 'CREATE_POST', post});

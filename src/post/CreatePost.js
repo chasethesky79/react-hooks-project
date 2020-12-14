@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { addPostAction } from './post-actions';
 
-export default function CreatePost({user, posts, setPosts}){
+export default function CreatePost({user, posts, dispatch}){
 
     const defaultPost = {title: '', content:'', author: user};
     const [post, setPost] = useState(defaultPost);
 
     const handleSubmit = (event) => {
-        setPosts([...posts, post]);
+        dispatch(addPostAction(post));
         setPost(defaultPost);
         event.preventDefault();
     }
