@@ -5,6 +5,6 @@ export const postReducer = (state, action) => {
           return [...state, post]
 
           default:
-            throw new Error()
+            return state;
     }
 }

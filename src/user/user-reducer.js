@@ -8,6 +8,6 @@ export const userReducer = (state, action) => {
             return '';
         
         default:
-            throw new Error()
+            return state;
     }
 }

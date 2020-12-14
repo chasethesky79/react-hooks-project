@@ -6,6 +6,7 @@ import './post/posts.css';
 import { useReducer } from 'react';
 import { userReducer } from './user/user-reducer';
 import { postReducer } from './post/post-reducer';
+import { appReducer } from './app-reducer';
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
@@ -14,16 +15,15 @@ const defaultPosts = [
 ]
 
 export default function App() {
-  
-  const [user, dispatchUser] = useReducer(userReducer, '')
-  const [posts, dispatchPost] = useReducer(postReducer, defaultPosts)
+
+  const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
+  const { user, posts } = state;
 
   return (
     <div className="posts-container">
-      User: {user}
-    <UserBar user={user} dispatch={dispatchUser}/>
+    <UserBar user={user} dispatch={dispatch}/>
     <br/>
-    { user && <CreatePost user={user} posts={posts} dispatch={dispatchPost}/>}
+    { user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
     <br/>
     <hr/>
     <PostList posts={posts}/>
