@@ -8,7 +8,7 @@ import { appReducer } from './app-reducer';
 import React from 'react';
 import Header from './Header';
 import { ThemeContext } from './contexts';
-
+import ChangeTheme from './themes/ChangeTheme';
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
@@ -30,6 +30,7 @@ export default function App({ header }) {
     <ThemeContext.Provider value={theme}>
     <div className="posts-container">
       <Header text={header}/>
+      <ChangeTheme theme={theme} setTheme={setTheme}/>
       <UserBar user={user} dispatch={dispatch}/>
     <br/>
     { user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
