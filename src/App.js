@@ -3,10 +3,11 @@ import PostList from './post/PostList.js';
 import CreatePost from './post/CreatePost';
 import UserBar from './user/UserBar';
 import './post/posts.css';
-import { useReducer } from 'react';
-import { userReducer } from './user/user-reducer';
-import { postReducer } from './post/post-reducer';
+import { useReducer, useEffect } from 'react';
 import { appReducer } from './app-reducer';
+import React from 'react';
+import Header from './Header';
+
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
@@ -14,14 +15,19 @@ const defaultPosts = [
   { title: 'Fashon Model', content: 'Ambercrombie', author: 'Bobby irwin'}
 ]
 
-export default function App() {
+export default function App({ header }) {
 
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
   const { user, posts } = state;
 
+  useEffect(() => {
+   document.title = user ? `${user} - ${header}` : `${header}`
+  }, [user]);
+
   return (
     <div className="posts-container">
-    <UserBar user={user} dispatch={dispatch}/>
+      <Header text={header}/>
+      <UserBar user={user} dispatch={dispatch}/>
     <br/>
     { user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
     <br/>
