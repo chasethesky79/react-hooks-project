@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { registerAction } from './user-actions';
+import { StateContext } from '../contexts';
 
-export default function Register({dispatch}) {
+export default function Register() {
+    const { dispatch } = useContext(StateContext);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');

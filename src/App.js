@@ -7,7 +7,7 @@ import { useReducer, useEffect, useState } from 'react';
 import { appReducer } from './app-reducer';
 import React from 'react';
 import Header from './Header';
-import { ThemeContext } from './contexts';
+import { ThemeContext, StateContext } from './contexts';
 import ChangeTheme from './themes/ChangeTheme';
 
 const defaultPosts = [
@@ -27,17 +27,19 @@ export default function App({ header }) {
   }, [user]);
 
   return (
+    <StateContext.Provider value={{ state, dispatch }}>
     <ThemeContext.Provider value={theme}>
     <div className="posts-container">
       <Header text={header}/>
       <ChangeTheme theme={theme} setTheme={setTheme}/>
-      <UserBar user={user} dispatch={dispatch}/>
+      <UserBar/>
     <br/>
-    { user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
+    { user && <CreatePost/>}
     <br/>
     <hr/>
-    <PostList posts={posts}/>
+    <PostList/>
     </div>
     </ThemeContext.Provider>
+    </StateContext.Provider>
   )
 }

@@ -1,7 +1,10 @@
 import { logoutAction } from "./user-actions";
+import { StateContext } from '../contexts';
+import { useContext } from 'react';
 
-export default function Logout({ user, dispatch }){
+export default function Logout(){
 
+  const { state: { user }, dispatch } = useContext(StateContext);
   const handleLogout = (evt) => {
       dispatch(logoutAction)
       evt.preventDefault();
