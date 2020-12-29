@@ -19,12 +19,12 @@ const defaultPosts = [
 export default function App({ header }) {
 
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
-  const { user, posts } = state;
+  const { user } = state;
   const [theme, setTheme ] = useState({ primaryColor: 'blue', secondaryColor: 'purple'});
 
   useEffect(() => {
    document.title = user ? `${user} - ${header}` : `${header}`
-  }, [user]);
+  }, [user, header]);
 
   return (
     <StateContext.Provider value={{ state, dispatch }}>
