@@ -11,10 +11,11 @@ import { ThemeContext, StateContext } from './contexts';
 import ChangeTheme from './themes/ChangeTheme';
 
 const defaultPosts = [
-  { title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
-  { title: 'Using React Fragments', content: 'Smart lesson to learn', author: 'Bharath Seshadri'},
-  { title: 'Fashon Model', content: 'Ambercrombie', author: 'Bobby irwin'}
+  { id: 'react-hooks', title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
+  { id: 'react-fragments', title: 'Using React Fragments', content: 'Smart lesson to learn', author: 'Bharath Seshadri'},
+  { id: 'react-fashion', title: 'Fashon Model', content: 'Ambercrombie', author: 'Bobby irwin'}
 ]
+
 
 export default function App({ header }) {
 

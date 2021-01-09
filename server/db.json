@@ -1,0 +1,7 @@
+{
+    "posts": [
+        { "id": "react-hooks", "title": "React Hooks", "content": "The greatest thing since sliced bread!", "author": "Daniel Bug1"},
+        { "id": "react-fragments", "title": "Using React Fragmentss", "content": "Keeping the DOM tree clean!", "author": "Daniel Bug1"},
+        { "id": "react-fashion", "title": "Fashion Model", "content": "Ambercrombie!", "author": "Bobby Irwin"}
+    ]
+}
