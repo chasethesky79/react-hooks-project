@@ -10,22 +10,19 @@ import Header from './Header';
 import { ThemeContext, StateContext } from './contexts';
 import ChangeTheme from './themes/ChangeTheme';
 
-const defaultPosts = [
-  { id: 'react-hooks', title: 'React Hooks', content: 'The greatest thing since sliced bread', author: 'Daniel Bugl'},
-  { id: 'react-fragments', title: 'Using React Fragments', content: 'Smart lesson to learn', author: 'Bharath Seshadri'},
-  { id: 'react-fashion', title: 'Fashon Model', content: 'Ambercrombie', author: 'Bobby irwin'}
-]
-
-
 export default function App({ header }) {
 
-  const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
+  const [state, dispatch] = useReducer(appReducer, { user: '', posts: [] })
   const { user } = state;
   const [theme, setTheme ] = useState({ primaryColor: 'blue', secondaryColor: 'purple'});
 
-  useEffect(() => {
-   document.title = user ? `${user} - ${header}` : `${header}`
-  }, [user, header]);
+  useEffect(() => { 
+    const fetchResults = async () => {
+    const resultJSON = await fetch('/api/posts');
+    dispatch({type: 'FETCH_POSTS', posts: await resultJSON.json()})
+ } 
+ fetchResults();
+}, []);
 
   return (
     <StateContext.Provider value={{ state, dispatch }}>
