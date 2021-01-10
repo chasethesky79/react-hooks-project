@@ -2,11 +2,13 @@
   "name": "chapter3_1",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
     "concurrently": "^5.3.0",
+    "http-proxy-middleware": "^1.0.6",
     "json-server": "^0.16.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -15,7 +17,7 @@
   },
   "scripts": {
     "start:client": "react-scripts start",
-    "start:server": "json-server --watch server/db.json --port 8000",
+    "start:server": "json-server --watch server/db.json --port 8000 --routes server/routes.json",
     "start": "npx concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
