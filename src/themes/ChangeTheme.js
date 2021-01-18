@@ -1,5 +1,6 @@
 import '../themes/themes.css'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useResource } from 'react-request-hook';
 
 const ThemeItem = ({ theme, active, onClick }) => {
     return (
@@ -12,20 +13,19 @@ const ThemeItem = ({ theme, active, onClick }) => {
 
 
 export default function ChangeTheme({ theme, setTheme }) {
-    const [ themes, setThemes ] = useState([]);
+    const [ themes, getThemes ] = useResource(() => ({
+       url: '/themes',
+       method: 'get'
+    }));
+    const { data, isLoading } = themes;
+    useEffect(getThemes, []);
     const isActive = (t) => theme.primaryColor === t.primaryColor && theme.secondaryColor === t.secondaryColor;
-    useEffect(() => { 
-        const fetchResults = async () => {
-        const resultJSON = await fetch('/api/themes');
-        setThemes(await resultJSON.json())
-     } 
-     fetchResults();
-    }, []);
 
     return (
         <div>
+            { isLoading && 'Loading themes ...'}
             Change Theme:
-            {themes.map((t, i) => {  
+            {data && data.map((t, i) => {  
                 const key = `Theme - ${i}`;
                 return <ThemeItem key={key} theme={t} active={isActive(t)} onClick={() => setTheme(t)}/>
             })

@@ -19,7 +19,7 @@ export default function App({ header }) {
   useEffect(() => { 
     const fetchResults = async () => {
     const resultJSON = await fetch('/api/posts');
-    dispatch({type: 'FETCH_POSTS', posts: await resultJSON.json()})
+    dispatch({ type: 'FETCH_POSTS', posts: await resultJSON.json() })
  } 
  fetchResults();
 }, []);
