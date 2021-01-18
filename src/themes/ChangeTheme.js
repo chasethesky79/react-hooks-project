@@ -18,7 +18,7 @@ export default function ChangeTheme({ theme, setTheme }) {
        method: 'get'
     }));
     const { data, isLoading } = themes;
-    useEffect(getThemes, []);
+    useEffect(getThemes, [getThemes]);
     const isActive = (t) => theme.primaryColor === t.primaryColor && theme.secondaryColor === t.secondaryColor;
 
     return (
