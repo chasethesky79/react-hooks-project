@@ -9,6 +9,7 @@ import React from 'react';
 import Header from './Header';
 import { ThemeContext, StateContext } from './contexts';
 import ChangeTheme from './themes/ChangeTheme';
+import { useResource } from 'react-request-hook';
 
 export default function App({ header }) {
 
@@ -16,13 +17,17 @@ export default function App({ header }) {
   const { user } = state;
   const [theme, setTheme ] = useState({ primaryColor: 'blue', secondaryColor: 'purple'});
 
-  useEffect(() => { 
-    const fetchResults = async () => {
-    const resultJSON = await fetch('/api/posts');
-    dispatch({ type: 'FETCH_POSTS', posts: await resultJSON.json() })
- } 
- fetchResults();
-}, []);
+  const [ posts, getPosts ] = useResource(() => ({
+    url: '/posts',
+    method: 'get'
+  }))
+  useEffect(getPosts, [getPosts])
+  useEffect(() => {
+    const{ data } = posts;
+    if (!!data) {
+      dispatch({ type: 'FETCH_POSTS', posts: data })
+    }
+  }, [posts])
 
   return (
     <StateContext.Provider value={{ state, dispatch }}>
