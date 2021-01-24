@@ -7,7 +7,6 @@ export default function PostList(){
     const { state: { posts }} = useContext(StateContext);
     return (
         <div>
-            {isLoading && 'Loading posts...'}
             {posts.map((p, index) => 
                 <React.Fragment key={`post-${index}`}>
                 <Post {...p}/>
